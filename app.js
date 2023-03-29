@@ -29,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
+  // db.run("create table users(id int, first_name varchar(255), last_name varchar(255), email varchar(255), password varchar(255))")
   res.render("index");
 })
 
@@ -38,6 +39,19 @@ app.get("/sign-in", (req, res) => {
 
 app.get("/sign-up", (req, res) => {
   res.render("sign-up")
+})
+
+app.post("/sign-up", (req, res) => {
+  db.all("select * from users where email = ?", [req.body.email], (err, rows) => {
+    if (rows.length <= 0) {
+      db.run("insert into users(first_name, last_name, email, password) values(?, ?, ?, ?)",
+        [req.body.firstName, req.body.lastName, req.body.email, req.body.password])
+      res.redirect("sign-in")
+    }
+    else {
+      res.redirect("/sign-up")
+    }
+  })
 })
 
 app.set("port", port)
