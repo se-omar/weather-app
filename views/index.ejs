@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather app</title>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container-fluid">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">The Weather Team</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/sign-in">Sign in <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/sign-up">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="row offset-sm-1">
+      <section class="header col-md-4 col-sm-10 ">
+        <h1> The Weather Team</h1>
+      </section>
+
+      <section class="main col-md-7 col-sm-10  ">
+
+        <section class="inputs">
+          <input type="text" placeholder="Enter any city..." id="cityinput">
+          <input type="submit" value="Submit" id="add">
+          <button placeholder="submit" id="add"></button>
+        </section>
+
+        <section class="display">
+          <div class="wrapper">
+            <h2 id="cityoutput"></h2>
+            <p id="description"></p>
+            <p id="temp"></p>
+            <p id="wind"></p>
+
+          </div>
+        </section>
+      </section>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/javascripts/main.js"></script>
+</body>
+
+</html>
