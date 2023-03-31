@@ -16,6 +16,9 @@
     <div class="col-lg-5">
       <form method="POST" action="">
         <!-- Email input -->
+      <% if (error) { %>
+          <h2 style="color:red"><%= error %></h2>
+      <% } %>
 
         <div class="form-outline mb-4">
           <label class="form-label" for="firstName">First Name</label>

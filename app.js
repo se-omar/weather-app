@@ -42,7 +42,7 @@ app.post("/sign-in", (req, res) => {
 })
 
 app.get("/sign-up", (req, res) => {
-  res.render("sign-up")
+  res.render("sign-up", {error: ""})
 })
 
 app.post("/sign-up", (req, res) => {
@@ -53,7 +53,9 @@ app.post("/sign-up", (req, res) => {
       res.redirect("sign-in")
     }
     else {
-      res.redirect("/sign-up")
+      res.render("sign-up", {
+        error: "user already exists"
+      })
     }
   })
 })
