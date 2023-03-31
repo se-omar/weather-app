@@ -30,19 +30,34 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
   // db.run("create table users(id int, first_name varchar(255), last_name varchar(255), email varchar(255), password varchar(255))")
-  res.render("index");
+  res.render("index", {user: null});
 })
 
 app.get("/sign-in", (req, res) => {
-  res.render("sign-in")
+  res.render("sign-in", { error: "" })
 })
 
 app.post("/sign-in", (req, res) => {
-  
+  db.all("select * from users where email = ?", [req.body.email], (err, rows) => {
+    if (rows.length <= 0) {
+      res.render("sign-in", { error: "user does not exist" })
+    }
+    else {
+      const user = rows[0];
+      if (user.password !== req.body.password) {
+        res.render("sign-in", { error: "wrong password" })
+      }
+      else {
+        res.render("index", { user });
+      }
+
+    }
+  })
+
 })
 
 app.get("/sign-up", (req, res) => {
-  res.render("sign-up", {error: ""})
+  res.render("sign-up", { error: "" })
 })
 
 app.post("/sign-up", (req, res) => {
