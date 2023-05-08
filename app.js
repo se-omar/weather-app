@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 const app = express();
-const port = 3000;
+const port = 4000;
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -38,7 +38,11 @@ app.get("/sign-in", (req, res) => {
 })
 
 app.post("/sign-in", (req, res) => {
-  
+  db.all("select * from users where email = ? and password = ?", [req.body.email, req.body.password], (err, rows) => {
+    if(rows.length > 0) {
+      res.redirect("/")
+    }
+  })
 })
 
 app.get("/sign-up", (req, res) => {
